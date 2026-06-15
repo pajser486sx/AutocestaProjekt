@@ -9,4 +9,5 @@ public class Car {
     private Long id;
     private String marka;
     private String boja;
+    private String registracija;
 }
