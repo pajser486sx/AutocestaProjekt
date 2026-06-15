@@ -38,16 +38,16 @@ public class TollpassageServiceImpl implements TollpassageService {
     @Override
     public Tollpassage findById(Long id) {
         return tollpassageRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tollpassage not found"));
+                .orElseThrow(() -> new RuntimeException("Tollpassage (prolaz preko NP) nije pronađen"));
     }
 
     @Override
     public Tollpassage create(TollpassageDTO dto) {
         Tollbooth tollbooth = tollboothRepository.findById(dto.getTollboothId())
-                .orElseThrow(() -> new RuntimeException("Tollbooth not found"));
+                .orElseThrow(() -> new RuntimeException("Tollbooth (naplatna postaja) nije pronađena"));
 
         Car car = carRepository.findById(dto.getCarId())
-                .orElseThrow(() -> new RuntimeException("Car not found"));
+                .orElseThrow(() -> new RuntimeException("Car (auto) nije pronađen"));
 
         Tollpassage tollpassage = new Tollpassage();
         tollpassage.setPassageTime(LocalDateTime.now());
@@ -62,10 +62,10 @@ public class TollpassageServiceImpl implements TollpassageService {
         Tollpassage tollpassage = findById(id);
 
         Tollbooth tollbooth = tollboothRepository.findById(dto.getTollboothId())
-                .orElseThrow(() -> new RuntimeException("Tollbooth not found"));
+                .orElseThrow(() -> new RuntimeException("Tollbooth (naplatna postaja) nije pronađena"));
 
         Car car = carRepository.findById(dto.getCarId())
-                .orElseThrow(() -> new RuntimeException("Car not found"));
+                .orElseThrow(() -> new RuntimeException("Car (auto) nije pronađen"));
 
         tollpassage.setTollbooth(tollbooth);
         tollpassage.setCar(car);
