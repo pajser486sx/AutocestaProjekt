@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface RoadRepository extends JpaRepository<Road, Long> {
 
-    Optional<Road> findById(Long id);
+    // Optional<Road> findById(Long id);
+
+    Optional<Road> findByOznaka(Road.Oznaka oznaka);
 
 }

@@ -1,7 +1,7 @@
 package com.example.autocestaprojekt.dto;
 
 public class TollpassageDTO {
-
+    private Long id;
     private Long tollboothId;
     private Long carId;
 

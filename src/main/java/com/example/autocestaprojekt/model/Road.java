@@ -12,13 +12,8 @@ public class Road {
     private Long id;
 
 
-    private String oznaka;   // npr. A1, A3, A8...
-
-
-    private String ime;   //ime može biti npr. Bregana-Lipovac, Zagreb-Sisak, Goričan-Zagreb
-
-    @OneToMany(mappedBy = "road")
-    private List<Tollbooth> tollbooths;
+    @Enumerated(EnumType.STRING)
+    private Oznaka oznaka;
 
     public Long getId() {
         return id;
@@ -28,11 +23,11 @@ public class Road {
         this.id = id;
     }
 
-    public String getOznaka() {
+    public Oznaka getOznaka() {
         return oznaka;
     }
 
-    public void setOznaka(String oznaka) {
+    public void setOznaka(Oznaka oznaka) {
         this.oznaka = oznaka;
     }
 
@@ -43,6 +38,18 @@ public class Road {
     public void setIme(String ime) {
         this.ime = ime;
     }
+
+    public enum Oznaka {
+        A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11
+    }
+
+
+    private String ime;   //ime može biti npr. Bregana-Lipovac, Zagreb-Sisak, Goričan-Zagreb
+
+    @OneToMany(mappedBy = "road")
+    private List<Tollbooth> tollbooths;
+
+
 
     public List<Tollbooth> getTollbooths() {
         return tollbooths;

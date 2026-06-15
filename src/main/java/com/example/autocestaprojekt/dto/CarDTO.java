@@ -2,6 +2,7 @@ package com.example.autocestaprojekt.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class CarDTO {
     private Long id;
@@ -13,7 +14,7 @@ public class CarDTO {
     private String boja;
 
     @NotBlank( message = "polje registracija ne može biti prazno!" )
-    @Min( value = 7, message = "Registracija mora imati barem 7 znakova!" )
+    @Size(min = 7, message = "Registracija mora imati barem 7 znakova!")
     private String registracija;
 
     public Long getId() {

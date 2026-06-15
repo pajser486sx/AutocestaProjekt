@@ -1,17 +1,11 @@
 package com.example.autocestaprojekt.dto;
 
+import com.example.autocestaprojekt.model.Road;
+
 public class RoadDTO {
-
-    private String oznaka;
+    private Long id;
     private String ime;
-
-    public String getOznaka() {
-        return oznaka;
-    }
-
-    public void setOznaka(String oznaka) {
-        this.oznaka = oznaka;
-    }
+    private Road.Oznaka oznaka;
 
     public String getIme() {
         return ime;
@@ -19,5 +13,21 @@ public class RoadDTO {
 
     public void setIme(String ime) {
         this.ime = ime;
+    }
+
+    public Road.Oznaka getOznaka() {
+        return oznaka;
+    }
+
+    public void setOznaka(Road.Oznaka oznaka) {
+        this.oznaka = oznaka;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

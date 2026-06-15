@@ -3,6 +3,7 @@ package com.example.autocestaprojekt.controller;
 import com.example.autocestaprojekt.dto.CarDTO;
 import com.example.autocestaprojekt.model.Car;
 import com.example.autocestaprojekt.service.CarService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class CarController {
     }
 
     @PostMapping
-    public Car createCar(@RequestBody CarDTO carDTO) {
+    public Car createCar(@Valid @RequestBody CarDTO carDTO) {
         return carService.create(carDTO);
     }
 

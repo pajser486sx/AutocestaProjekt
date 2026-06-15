@@ -1,9 +1,11 @@
 package com.example.autocestaprojekt.dto;
 
-public class TollboothDTO {
+import com.example.autocestaprojekt.model.Road;
 
+public class TollboothDTO {
+    private Long id;
     private String ime;
-    private Long roadId;
+    private Road.Oznaka oznaka;
 
     public String getIme() {
         return ime;
@@ -13,11 +15,19 @@ public class TollboothDTO {
         this.ime = ime;
     }
 
-    public Long getRoadId() {
-        return roadId;
+    public Road.Oznaka getOznaka() {
+        return oznaka;
     }
 
-    public void setRoadId(Long roadId) {
-        this.roadId = roadId;
+    public void setOznaka(Road.Oznaka oznaka) {
+        this.oznaka = oznaka;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

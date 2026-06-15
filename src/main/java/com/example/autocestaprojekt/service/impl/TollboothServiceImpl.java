@@ -6,6 +6,7 @@ import com.example.autocestaprojekt.model.Tollbooth;
 import com.example.autocestaprojekt.repository.RoadRepository;
 import com.example.autocestaprojekt.repository.TollboothRepository;
 import com.example.autocestaprojekt.service.TollboothService;
+import com.example.autocestaprojekt.validation.TollboothValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,12 +37,20 @@ public class TollboothServiceImpl implements TollboothService {
     }
 
     @Override
-    public Tollbooth create(TollboothDTO dto) {
-        Road road = roadRepository.findById(dto.getRoadId())
-                .orElseThrow(() -> new RuntimeException("Road (autocesta) nije pronađena"));
+    public Tollbooth create(TollboothDTO tollboothDTO) {
+
+        if (!TollboothValidator.isValidTollboothForRoad(
+                tollboothDTO.getOznaka(),
+                tollboothDTO.getIme()
+        )) {
+            throw new IllegalArgumentException("Invalid tollbooth for selected road.");
+        }
+
+        Road road = roadRepository.findByOznaka(tollboothDTO.getOznaka())
+                .orElseThrow(() -> new RuntimeException("Road (autocesta) not found."));
 
         Tollbooth tollbooth = new Tollbooth();
-        tollbooth.setIme(dto.getIme());
+        tollbooth.setIme(tollboothDTO.getIme());
         tollbooth.setRoad(road);
 
         return tollboothRepository.save(tollbooth);
@@ -51,7 +60,14 @@ public class TollboothServiceImpl implements TollboothService {
     public Tollbooth update(Long id, TollboothDTO dto) {
         Tollbooth tollbooth = findById(id);
 
-        Road road = roadRepository.findById(dto.getRoadId())
+        if (!TollboothValidator.isValidTollboothForRoad(
+                dto.getOznaka(),
+                dto.getIme()
+        )) {
+            throw new IllegalArgumentException("Invalid tollbooth for selected road.");
+        }
+
+        Road road = roadRepository.findByOznaka(dto.getOznaka())
                 .orElseThrow(() -> new RuntimeException("Road (autocesta) nije pronađena"));
 
         tollbooth.setIme(dto.getIme());
