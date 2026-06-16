@@ -30,11 +30,15 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car create(CarDTO dto) {
-        Car car = new Car();
 
+        if (carRepository.existsByRegistracijaIgnoreCase(dto.getRegistracija())) {
+            throw new IllegalArgumentException("Već postoji auto s ovom registracijom.");
+        }
+
+        Car car = new Car();
         car.setMarka(dto.getMarka());
-        car.setBoja(dto.getBoja());
         car.setRegistracija(dto.getRegistracija());
+        car.setBoja(dto.getBoja());
 
         return carRepository.save(car);
     }

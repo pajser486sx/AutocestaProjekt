@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Toll Passages</title>
 </head>
 <body>
+
+<h1>Toll Passages</h1>
+
+<a th:href="@{/passages/new}">Add new passage</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Vrijeme prolaska</th>
+        <th>Autocesta</th>
+        <th>Naplatna postaja</th>
+        <th>Registracija</th>
+        <th>Marka</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="passage : ${passages}">
+        <td th:text="${passage.id}"></td>
+
+        <td th:text="${#temporals.format(passage.passageTime, 'dd.MM.yyyy HH:mm')}"></td>
+
+        <td th:text="${passage.tollbooth.road.oznaka}"></td>
+
+        <td th:text="${passage.tollbooth.ime}"></td>
+
+        <td th:text="${passage.car.registracija}"></td>
+
+        <td th:text="${passage.car.marka}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<a th:href="@{/}">Back to home</a>
 
 </body>
 </html>

@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cars</title>
 </head>
 <body>
+
+<h1>Cars</h1>
+
+<a th:href="@{/cars/new}">Add new car</a>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Marka</th>
+        <th>Registracija</th>
+        <th>Boja</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}"></td>
+        <td th:text="${car.marka}"></td>
+        <td th:text="${car.registracija}"></td>
+        <td th:text="${car.boja}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<a th:href="@{/}">Back to home</a>
 
 </body>
 </html>

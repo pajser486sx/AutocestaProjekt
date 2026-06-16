@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dodaj cestu</title>
 </head>
 <body>
+
+<h1>Add Road</h1>
+
+<form th:action="@{/roads}" th:object="${roadDTO}" method="post">
+
+    <label>Oznaka:</label>
+    <select th:field="*{oznaka}">
+        <option value="">ODABERI AUTOCESTU (kada se izgradi nova)</option>
+        <option th:each="oznaka : ${oznake}"
+                th:value="${oznaka}"
+                th:text="${oznaka}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Ime:</label>
+    <input type="text" th:field="*{ime}" placeholder="npr. Zagreb-Split-Dubrovnik">
+
+    <br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<br>
+
+<a th:href="@{/roads}">Back to roads</a>
 
 </body>
 </html>

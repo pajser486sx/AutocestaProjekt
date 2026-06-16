@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Toll Passage</title>
 </head>
 <body>
+
+<h1>Add Toll Passage</h1>
+
+<form th:action="@{/passages}" th:object="${tollpassageDTO}" method="post">
+
+    <label>Tollbooth:</label>
+
+    <select th:field="*{tollboothId}">
+        <option value="">-- Select tollbooth --</option>
+
+        <option th:each="tollbooth : ${tollbooths}"
+                th:value="${tollbooth.id}"
+                th:text="${tollbooth.road.oznaka + ' - ' + tollbooth.ime}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Car:</label>
+
+    <select th:field="*{carId}">
+        <option value="">-- Select car --</option>
+
+        <option th:each="car : ${cars}"
+                th:value="${car.id}"
+                th:text="${car.registracija + ' (' + car.marka + ')'}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<br>
+
+<a th:href="@{/passages}">Back to passages</a>
 
 </body>
 </html>

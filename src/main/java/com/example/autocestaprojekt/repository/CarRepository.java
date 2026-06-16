@@ -10,4 +10,6 @@ public interface CarRepository extends JpaRepository<Car, Long> {
     Optional<Car> findById(Long id);
 
     Optional<Car> findByRegistracijaIgnoreCase(String registracija);
+
+    boolean existsByRegistracijaIgnoreCase(String registracija);
 }

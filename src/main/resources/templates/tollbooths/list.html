@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tollbooths</title>
 </head>
 <body>
+
+<h1>All Tollbooths - sve Naplatne postaje po autocestama</h1>
+
+<a th:href="@{/}">Back to home</a>
+
+<div th:each="road : ${roads}">
+
+    <h2 th:text="${road}"></h2>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tollbooth name</th>
+            <th>Road</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="t : ${tollbooths}"
+            th:if="${t.road.oznaka == road}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.ime}"></td>
+            <td th:text="${t.road.oznaka}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+</div>
+
+<br>
+
+<a th:href="@{/}">Back to home</a>
 
 </body>
 </html>

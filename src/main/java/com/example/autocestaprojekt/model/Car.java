@@ -10,6 +10,8 @@ public class Car {
     private Long id;
     private String marka;
     private String boja;
+
+    @Column(unique = true, nullable = false)
     private String registracija;
 
     public Long getId() {

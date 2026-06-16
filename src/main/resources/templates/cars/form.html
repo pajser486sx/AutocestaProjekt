@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Car</title>
 </head>
 <body>
+
+<h1>Add Car</h1>
+
+<form th:action="@{/cars}" th:object="${carDTO}" method="post">
+
+    <label>Marka:</label>
+    <input type="text" th:field="*{marka}">
+
+    <br><br>
+
+    <label>Registracija:</label>
+    <input type="text" th:field="*{registracija}">
+
+    <br><br>
+
+    <label>Boja:</label>
+    <input type="text" th:field="*{boja}">
+
+    <br><br>
+
+    <button type="submit">Save</button>
+</form>
+
+<br>
+
+<a th:href="@{/cars}">Back to cars</a>
 
 </body>
 </html>
