@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Roads</title>
 </head>
 <body>
+
+<h1>Roads</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Oznaka</th>
+        <th>Ime</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="road : ${roads}">
+        <td th:text="${road.id}"></td>
+        <td th:text="${road.oznaka}"></td>
+        <td th:text="${road.ime}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<a th:href="@{/}">Back to home</a>
 
 </body>
 </html>
