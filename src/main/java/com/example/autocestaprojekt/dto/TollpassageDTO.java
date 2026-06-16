@@ -1,8 +1,15 @@
 package com.example.autocestaprojekt.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class TollpassageDTO {
     private Long id;
+
+    @NotNull( message = "odaberi NP kojoj pripada prolaz!" )
     private Long tollboothId;
+
+    @NotNull( message = "odaberi auto koji je prošao!" )
     private Long carId;
 
     public Long getTollboothId() {

@@ -3,6 +3,7 @@ package com.example.autocestaprojekt.controller;
 import com.example.autocestaprojekt.dto.TollpassageDTO;
 import com.example.autocestaprojekt.model.Tollpassage;
 import com.example.autocestaprojekt.service.TollpassageService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class TollpassageController {
     }
 
     @PostMapping
-    public Tollpassage createTollpassage(@RequestBody TollpassageDTO tollpassageDTO) {
+    public Tollpassage createTollpassage(@Valid @RequestBody TollpassageDTO tollpassageDTO) {
         return tollpassageService.create(tollpassageDTO);
     }
 
     @PutMapping("/{id}")
-    public Tollpassage updateTollpassage(@PathVariable Long id, @RequestBody TollpassageDTO tollpassageDTO) {
+    public Tollpassage updateTollpassage(@PathVariable Long id, @Valid @RequestBody TollpassageDTO tollpassageDTO) {
         return tollpassageService.update(id, tollpassageDTO);
     }
 

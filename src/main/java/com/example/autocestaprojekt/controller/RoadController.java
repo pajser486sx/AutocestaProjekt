@@ -3,6 +3,7 @@ package com.example.autocestaprojekt.controller;
 import com.example.autocestaprojekt.dto.RoadDTO;
 import com.example.autocestaprojekt.model.Road;
 import com.example.autocestaprojekt.service.RoadService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,12 +29,12 @@ public class RoadController {
     }
 
     @PostMapping
-    public Road createRoad(@RequestBody RoadDTO roadDTO) {
+    public Road createRoad(@Valid @RequestBody RoadDTO roadDTO) {
         return roadService.create(roadDTO);
     }
 
     @PutMapping("/{id}")
-    public Road updateRoad(@PathVariable Long id, @RequestBody RoadDTO roadDTO) {
+    public Road updateRoad(@PathVariable Long id, @Valid @RequestBody RoadDTO roadDTO) {
         return roadService.update(id, roadDTO);
     }
 
