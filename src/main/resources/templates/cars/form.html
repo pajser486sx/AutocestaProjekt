@@ -7,38 +7,125 @@
 <body>
 
 <div class="page">
-<h1>Dodaj auto</h1>
 
-<form th:action="@{/cars}" th:object="${carDTO}" method="post">
+    <h1>Dodaj auto</h1>
 
-    <label>Marka:</label>
-    <input type="text" th:field="*{marka}">
+    <div class="car-form-layout">
 
-    <br><br>
+        <form class="form-card" th:action="@{/cars}" th:object="${carDTO}" method="post">
 
-    <label>Registracija (koristi VELIKA slova):</label>
-    <input type="text"
-           th:field="*{registracija}"
-           placeholder="npr. ZG-123-AB | ZG-1234-AA"
-           maxlength="12">
+            <label>Marka:</label>
+            <br>
+            <input type="text" th:field="*{marka}">
 
-    <p th:if="${#fields.hasErrors('registracija')}"
-       th:errors="*{registracija}">
-    </p>
+            <br><br>
 
-    <br><br>
+            <label>Registracija (koristi VELIKA slova):</label>
+            <br>
+            <input type="text"
+                   th:field="*{registracija}"
+                   id="registracija"
+                   placeholder="npr. ZG-123-AB | ZG-1234-AA"
+                   maxlength="12">
 
-    <label>Boja:</label>
-    <input type="text" th:field="*{boja}">
+            <p class="error-text"
+               th:if="${#fields.hasErrors('registracija')}"
+               th:errors="*{registracija}">
+            </p>
 
-    <br><br>
+            <br>
 
-    <button type="submit">Spremi</button>
-</form>
+            <label>Boja:</label>
+            <br>
+            <input type="text" th:field="*{boja}">
 
-<br>
+            <br><br>
 
-<a th:href="@{/cars}">Natrag na aute</a>
+            <button type="submit">Spremi</button>
+
+        </form>
+
+        <div class="plate-scanner-box">
+
+            <h3>Skeniraj registraciju sa slike</h3>
+
+            <label for="plateImage">Slika auta s registracijom:</label>
+            <br><br>
+
+            <input type="file" id="plateImage" accept="image/*">
+
+            <br><br>
+
+            <img id="previewImage" alt="Pregled slike" style="display: none;">
+
+            <br><br>
+
+            <button type="button" onclick="scanPlate()">Skeniraj registraciju</button>
+
+            <p id="plateResult"></p>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <a th:href="@{/cars}">Natrag na aute</a>
+
 </div>
+
+<script>
+    const imageInput = document.getElementById("plateImage");
+    const previewImage = document.getElementById("previewImage");
+
+    imageInput.addEventListener("change", function () {
+        const file = imageInput.files[0];
+
+        if (file) {
+            previewImage.src = URL.createObjectURL(file);
+            previewImage.style.display = "block";
+        } else {
+            previewImage.src = "";
+            previewImage.style.display = "none";
+        }
+    });
+
+    async function scanPlate() {
+        const file = imageInput.files[0];
+        const plateResult = document.getElementById("plateResult");
+        const registrationInput = document.getElementById("registracija");
+
+        if (!file) {
+            plateResult.textContent = "Prvo odaberi sliku.";
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        plateResult.textContent = "Skeniram registraciju...";
+
+        try {
+            const response = await fetch("/api/plates/scan", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.found) {
+                plateResult.textContent = "Prepoznata registracija: " + data.plate;
+                registrationInput.value = data.plate;
+            } else {
+                plateResult.textContent = "Registracija nije pronađena.";
+            }
+
+        } catch (error) {
+            plateResult.textContent = "Greška pri skeniranju registracije.";
+            console.error(error);
+        }
+    }
+</script>
+
 </body>
 </html>
