@@ -62,7 +62,7 @@ public class DataSeeder implements CommandLineRunner {
                 Map.entry(Road.Oznaka.A3, List.of(
                         "Bregana", "Zagreb istok", "Ivanić Grad", "Križ",
                         "Popovača", "Kutina", "Lipovljani", "Novska",
-                        "Očučani", "Nova Gradiška", "Lužani",
+                        "Okučani", "Nova Gradiška", "Lužani",
                         "Slavonski Brod zapad", "Slavonski Brod istok",
                         "Velika Kopanica", "Babina greda",
                         "Županja", "Spačva", "Lipovac"

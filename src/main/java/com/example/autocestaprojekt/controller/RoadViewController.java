@@ -23,16 +23,5 @@ public class RoadViewController {
         model.addAttribute("roads", roadService.findAll());
         return "roads/list";
     }
-    @GetMapping("/roads/new")
-    public String showRoadForm(Model model) {
-        model.addAttribute("roadDTO", new RoadDTO());
-        model.addAttribute("oznake", Road.Oznaka.values());
-        return "roads/form";
-    }
 
-    @PostMapping("/roads")
-    public String saveRoad(@Valid @ModelAttribute("roadDTO") RoadDTO roadDTO) {
-        roadService.create(roadDTO);
-        return "redirect:/roads";
-    }
 }

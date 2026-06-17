@@ -7,6 +7,7 @@ import com.example.autocestaprojekt.service.TollpassageService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,10 +45,18 @@ public class TollpassageViewController {
     }
 
     @PostMapping("/passages")
-    public String savePassage(
-            @Valid @ModelAttribute("tollpassageDTO") TollpassageDTO dto
+    public String saveTollpassage(
+            @Valid @ModelAttribute("tollpassageDTO") TollpassageDTO tollpassageDTO,
+            BindingResult bindingResult,
+            Model model
     ) {
-        tollpassageService.create(dto);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("cars", carService.findAll());
+            model.addAttribute("tollbooths", tollboothService.findAll());
+            return "passages/form";
+        }
+
+        tollpassageService.create(tollpassageDTO);
         return "redirect:/passages";
     }
 }
