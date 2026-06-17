@@ -20,11 +20,16 @@ podatke odmah ubaciti u bazu prilikom pokretanja aplikacije.
 
 <h3>Baza podataka</h3>
 Za lokalno pokretanje aplikacije, potrebno je napraviti SQL bazu
-`autocestadb`. 
+`autocestadb`.
+
+<br>
+
 ```sql
 CREATE DATABASE autocestadb;
 USE autocestadb;
 ```
+<br>
+
 Ako dođe do promjena u DataSeeder.java, potrebno je izbrisati bazu
 i ponovo je kreirati.
 ```sql
@@ -32,6 +37,7 @@ DROP DATABASE autocestadb;
 CREATE DATABASE autocestadb;
 USE autocestadb;
 ```
+
 <br>
 
 Ovisno o url-u lokalne MySQL baze, potrebno je u `src/main/resources/application.properties`
@@ -46,6 +52,10 @@ na lokalnoj bazi)
 <br><br>
 Frontend aplikacije je napravljen na hrvatskom jeziku, pošto se radi
 o hrvatskim cestama, neovisno o tome što je backend na engleskom.
+
+<br>
+
+Svi podaci o autocestama preuzeti su sa https://karta.hac.hr/map/map
 
 
 
