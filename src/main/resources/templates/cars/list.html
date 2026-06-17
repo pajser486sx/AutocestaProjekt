@@ -8,7 +8,9 @@
 <h1>Cars</h1>
 
 <a th:href="@{/cars/new}">Add new car</a>
-
+<br>
+<p th:if="${errorMessage}" th:text="${errorMessage}" style="color:red;"></p>
+<br>
 <table border="1">
     <thead>
     <tr>
@@ -16,6 +18,7 @@
         <th>Marka</th>
         <th>Registracija</th>
         <th>Boja</th>
+        <th>Akcije</th>
     </tr>
     </thead>
 
@@ -25,6 +28,11 @@
         <td th:text="${car.marka}"></td>
         <td th:text="${car.registracija}"></td>
         <td th:text="${car.boja}"></td>
+        <td>
+            <form th:action="@{/cars/delete/{id}(id=${car.id})}" method="post">
+                <button type="submit">X</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

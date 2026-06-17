@@ -10,4 +10,6 @@ public interface TollpassageRepository extends JpaRepository<Tollpassage, Long> 
     List<Tollpassage> findByTollboothId(Long tollboothId);
 
     List<Tollpassage> findByCarId(Long carId);
+
+    boolean existsByCarId(Long carId);
 }

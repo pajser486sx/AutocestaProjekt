@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -52,5 +53,17 @@ public class CarViewController {
 
         carService.create(carDTO);
         return "redirect:/cars";
+    }
+
+    @PostMapping("/cars/delete/{id}")
+    public String deleteCar(@PathVariable Long id, Model model) {
+        try {
+            carService.delete(id);
+            return "redirect:/cars";
+        } catch (IllegalStateException e) {
+            model.addAttribute("cars", carService.findAll());
+            model.addAttribute("errorMessage", e.getMessage());
+            return "cars/list";
+        }
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -57,6 +58,12 @@ public class TollpassageViewController {
         }
 
         tollpassageService.create(tollpassageDTO);
+        return "redirect:/passages";
+    }
+
+    @PostMapping("/passages/delete/{id}")
+    public String deleteTollpassage(@PathVariable Long id) {
+        tollpassageService.delete(id);
         return "redirect:/passages";
     }
 }

@@ -3,6 +3,7 @@ package com.example.autocestaprojekt.service.impl;
 import com.example.autocestaprojekt.dto.CarDTO;
 import com.example.autocestaprojekt.model.Car;
 import com.example.autocestaprojekt.repository.CarRepository;
+import com.example.autocestaprojekt.repository.TollpassageRepository;
 import com.example.autocestaprojekt.service.CarService;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
+    private final TollpassageRepository tollpassageRepository;
 
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImpl(CarRepository carRepository, TollpassageRepository tollpassageRepository) {
         this.carRepository = carRepository;
+        this.tollpassageRepository = tollpassageRepository;
     }
 
     @Override
@@ -56,6 +59,14 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void delete(Long id) {
+        if (!carRepository.existsById(id)) {
+            throw new RuntimeException("Auto nije pronađen.");
+        }
+
+        if (tollpassageRepository.existsByCarId(id)) {
+            throw new IllegalStateException("Ne možeš obrisati auto jer postoje prolazi za taj auto.");
+        }
+
         carRepository.deleteById(id);
     }
 }

@@ -75,6 +75,10 @@ public class TollpassageServiceImpl implements TollpassageService {
 
     @Override
     public void delete(Long id) {
+        if (!tollpassageRepository.existsById(id)) {
+            throw new RuntimeException("Prolaz nije pronađen.");
+        }
+
         tollpassageRepository.deleteById(id);
     }
 }
