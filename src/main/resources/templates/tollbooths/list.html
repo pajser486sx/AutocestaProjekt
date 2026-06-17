@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tollbooths</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title>Tollbooths - NP</title>
 </head>
 <body>
 
-<h1>All Tollbooths - sve Naplatne postaje po autocestama</h1>
+<div class="page">
 
-<a th:href="@{/}">Back to home</a>
+    <h1>Sve naplatne postaje (NP) po autocestama</h1>
 
-<div th:each="road : ${roads}">
+    <a th:href="@{/}">Natrag</a>
 
-    <h2 th:text="${road}"></h2>
+    <div class="tollbooth-grid">
 
-    <table border="1">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Tollbooth name</th>
-            <th>Road</th>
-        </tr>
-        </thead>
+        <div class="tollbooth-card" th:each="road : ${roads}">
 
-        <tbody>
-        <tr th:each="t : ${tollbooths}"
-            th:if="${t.road.oznaka == road}">
-            <td th:text="${t.id}"></td>
-            <td th:text="${t.ime}"></td>
-            <td th:text="${t.road.oznaka}"></td>
-        </tr>
-        </tbody>
-    </table>
+            <h2 th:text="${road}"></h2>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ime NP</th>
+                    <th>Cesta</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr th:each="t : ${tollbooths}"
+                    th:if="${t.road.oznaka == road}">
+                    <td th:text="${t.id}"></td>
+                    <td th:text="${t.ime}"></td>
+                    <td th:text="${t.road.oznaka}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
 
     <br>
 
+    <a th:href="@{/}">Natrag</a>
+
 </div>
-
-<br>
-
-<a th:href="@{/}">Back to home</a>
 
 </body>
 </html>

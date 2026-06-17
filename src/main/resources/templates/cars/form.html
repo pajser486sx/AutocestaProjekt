@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Car</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title>Add Car - Dodaj auto</title>
 </head>
 <body>
 
-<h1>Add Car</h1>
+<div class="page">
+<h1>Dodaj auto</h1>
 
 <form th:action="@{/cars}" th:object="${carDTO}" method="post">
 
@@ -14,10 +16,10 @@
 
     <br><br>
 
-    <label>Registracija:</label>
+    <label>Registracija (koristi VELIKA slova):</label>
     <input type="text"
            th:field="*{registracija}"
-           placeholder="ZG-123-AB ili ZG-1234-AA"
+           placeholder="npr. ZG-123-AB | ZG-1234-AA"
            maxlength="12">
 
     <p th:if="${#fields.hasErrors('registracija')}"
@@ -31,12 +33,12 @@
 
     <br><br>
 
-    <button type="submit">Save</button>
+    <button type="submit">Spremi</button>
 </form>
 
 <br>
 
-<a th:href="@{/cars}">Back to cars</a>
-
+<a th:href="@{/cars}">Natrag na aute</a>
+</div>
 </body>
 </html>

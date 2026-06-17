@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Toll Passages</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title>Toll Passages - Prolasci</title>
 </head>
 <body>
+<div class="page">
+<h1>Prolasci preko NP</h1>
 
-<h1>Toll Passages</h1>
-
-<a th:href="@{/passages/new}">Add new passage</a>
+<a th:href="@{/passages/new}">Dodaj novi prolazak</a>
+<br>
+    <br>
 
 <table border="1">
     <thead>
@@ -32,7 +35,7 @@
         <td th:text="${passage.car.marka}"></td>
         <td>
             <form th:action="@{/passages/delete/{id}(id=${passage.id})}" method="post">
-                <button type="submit">X</button>
+                <button type="submit" class="delete-button">X</button>
             </form>
         </td>
     </tr>
@@ -41,7 +44,7 @@
 
 <br>
 
-<a th:href="@{/}">Back to home</a>
-
+<a th:href="@{/}">Natrag</a>
+</div>
 </body>
 </html>

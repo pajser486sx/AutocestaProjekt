@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url('/images/PageBG.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.page {
+    padding: 35px;
+}
+
+table {
+    background-color: rgba(120, 120, 120, 0.75);
+    border-radius: 15px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    color: white;
+}
+
+th, td {
+    padding: 12px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+button,
+.button-link,
+a {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover,
+.button-link:hover,
+a:hover {
+    background-color: #333;
+}
+
+input, select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #999;
+}
+
+form {
+    margin: 0;
+}
+
+.home-page {
+    padding: 60px;
+}
+
+.home-menu {
+    width: fit-content;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.home-menu h1 {
+    margin-top: 0;
+}
+
+.home-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.home-menu li {
+    margin: 12px 0;
+}
+
+.home-menu a {
+    width: 180px;
+    text-align: center;
+}
+
+.home-title {
+    position: absolute;
+    top: 35px;
+    right: 60px;
+
+    color: black;
+    font-size: 48px;
+    font-weight: bold;
+
+    text-shadow: -4px 4px 5px rgba(0, 0, 0, 0.45);
+}
+
+.road-page {
+    display: flex;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+.road-map {
+    max-width: 55vw;
+    border-radius: 15px;
+    background-color: rgba(120, 120, 120, 0.75);
+    padding: 10px;
+}
+
+.tollbooth-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding-top: 20px;
+}
+
+.tollbooth-card {
+    padding: 15px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.tollbooth-card h2 {
+    margin-top: 0;
+}
+
+@media (max-width: 900px) {
+    .road-page {
+        display: block;
+    }
+
+    .road-map {
+        max-width: 100%;
+        margin-top: 25px;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}

@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Roads</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title>Roads - Autoceste</title>
 </head>
 <body>
 
-<h1>Roads</h1>
+<div class="page road-page">
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Oznaka</th>
-        <th>Ime</th>
-    </tr>
-    </thead>
+    <div>
+        <h1>Autoceste</h1>
 
-    <tbody>
-    <tr th:each="road : ${roads}">
-        <td th:text="${road.id}"></td>
-        <td th:text="${road.oznaka}"></td>
-        <td th:text="${road.ime}"></td>
-    </tr>
-    </tbody>
-</table>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Oznaka</th>
+                <th>Ime</th>
+            </tr>
+            </thead>
 
-<br>
+            <tbody>
+            <tr th:each="road : ${roads}">
+                <td th:text="${road.id}"></td>
+                <td th:text="${road.oznaka}"></td>
+                <td th:text="${road.ime}"></td>
+            </tr>
+            </tbody>
+        </table>
 
-<a th:href="@{/}">Back to home</a>
+        <br>
+
+        <a th:href="@{/}">Natrag</a>
+    </div>
+
+    <img class="road-map" th:src="@{/images/MapaAutoceste.png}" alt="Mapa autoceste">
+
+</div>
 
 </body>
 </html>

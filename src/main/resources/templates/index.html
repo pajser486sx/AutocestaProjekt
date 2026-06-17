@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
     <title>Autocesta Projekt</title>
 </head>
-<body>
+<body class="home-page">
 
-<h1>Autocesta Projekt</h1>
+<h1 class="home-title">Autocesta project (HR)</h1>
 
-<ul>
-    <li><a th:href="@{/roads}">Roads</a></li>
-    <li><a th:href="@{/tollbooths}">Tollbooths</a></li>
-    <li><a th:href="@{/cars}">Cars</a></li>
-    <li><a th:href="@{/passages}">Toll Passages</a></li>
-</ul>
+<div class="home-menu">
+    <h1>Izbornik</h1>
+
+    <ul>
+        <li><a th:href="@{/roads}">Pregled autocesta</a></li>
+        <li><a th:href="@{/tollbooths}">Pregled NP</a></li>
+        <li><a th:href="@{/cars}">Auti</a></li>
+        <li><a th:href="@{/passages}">Prelasci preko NP</a></li>
+    </ul>
+</div>
 
 </body>
 </html>
